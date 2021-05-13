@@ -166,7 +166,7 @@ Try {
 	}
 }
 Catch {                
-	Write-Output $("Did not find the VNET " + $VNET + " with subnet " + $existingSubnetName)     
+	Write-Output $("Did not find the VNET " + $VNET.name + " with subnet " + $existingSubnetName)     
 	throw  "Virtual network not found."
 }
 #endregion
@@ -190,16 +190,6 @@ foreach($url in $safeUrls) {
 
 $url = "kms.core.windows.net"
 $var = test-netconnection $url -port 1688
-if ($var.TcpTestSucceeded) {
-Write-Output "$url is reachable."
-} 
-else {
-    Write-Output "$url cannot be reached."   
-    Throw
-}
-
-$url = "169.254.169.254"
-$var = test-netconnection $url -port 80
 if ($var.TcpTestSucceeded) {
 Write-Output "$url is reachable."
 } 
